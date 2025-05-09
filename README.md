@@ -28,6 +28,7 @@ All projects are standalone Maven applications with their own `pom.xml` and dire
 ```bash
 cd BasicSpringHello
 mvn spring-boot:run
+```
 
 ## 📘 License
 
