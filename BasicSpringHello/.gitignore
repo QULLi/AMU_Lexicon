@@ -5,7 +5,7 @@ target/
 !**/src/test/**/target/
 
 # Local configuration file - will be ignored
-!**/src/main/resources/application-local.properties
+src/main/resources/application-local.properties
 
 ### STS ###
 .apt_generated
