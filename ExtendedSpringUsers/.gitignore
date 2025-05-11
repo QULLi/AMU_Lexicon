@@ -31,3 +31,21 @@ build/
 
 ### VS Code ###
 .vscode/
+/.backup/.gitignore
+/.backup/src/main/java/com/example/demo/Application.java
+/.backup/src/main/resources/application.properties
+/.backup/src/test/java/com/example/demo/ApplicationTests.java
+/.backup/docker-compose.yml
+/.backup/Dockerfile
+/.backup/src/main/java/com/example/config/DotenvConfig.java
+/.backup/EurekaServerApplication.java
+/.backup/src/main/java/com/example/security/jwt/JwtAuthenticationFilter.java
+/.backup/src/main/java/com/example/security/jwt/JwtAuthenticationToken.java
+/.backup/src/main/java/com/example/security/jwt/JwtService.java
+/.backup/pom.xml
+/.backup/src/main/java/com/example/config/SecurityConfig.java
+/.backup/src/main/java/com/example/demo/Model/User.java
+/.backup/src/main/java/com/example/demo/Controller/UserController.java
+/.backup/src/main/java/com/example/demo/Repository/UserRepository.java
+/.backup/src/main/java/com/example/demo/Service/UserService.java
+/.backup/UserServiceApplication.java
