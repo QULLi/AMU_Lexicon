@@ -1,0 +1,62 @@
+services:
+  mysql:
+    image: mysql:8.3
+    container_name: mysql-container
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u${MYSQL_USER}", "-p${MYSQL_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app-network
+
+  eurekaserver:
+    build:
+      context: ./eurekaserver
+      dockerfile: Dockerfile
+    container_name: eurekaserver
+    restart: unless-stopped
+    ports:
+      - "8761:8761"
+    networks:
+      - app-network
+
+  userapp:
+    build:
+      context: ./userapp
+      dockerfile: Dockerfile
+    container_name: userapp
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      # Activate the local profile so that Spring Boot loads the external application-local.properties
+      SPRING_PROFILES_ACTIVE: local
+      # Ensure that external config in the /config folder overrides default settings.
+      SPRING_CONFIG_LOCATION: "classpath:/,file:/config/"
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eurekaserver:8761/eureka
+    volumes:
+      # Mount your existing external configuration file containing the MySQL login credentials.
+      - ./userapp/src/main/resources/application-local.properties:/config/application-local.properties:ro
+    networks:
+      - app-network
+
+volumes:
+  mysql-data:
+
+networks:
+  app-network:
+    driver: bridge
