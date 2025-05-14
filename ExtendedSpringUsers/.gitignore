@@ -54,3 +54,6 @@ build/
 
 ### Environment ###
 .env
+
+### Spring Boot - local config
+userapp/src/main/resources/application-local.properties
