@@ -9,6 +9,8 @@ import java.util.List;
 /**
  * REST Controller for handling User operations.
  */
+
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/users")
 public class UserController {
