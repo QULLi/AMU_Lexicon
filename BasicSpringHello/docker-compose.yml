@@ -1,7 +1,7 @@
 services:
   mysql:
     image: mysql:8.3
-    container_name: mysql-container
+    container_name: mysql-container2
     restart: unless-stopped
     environment:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
