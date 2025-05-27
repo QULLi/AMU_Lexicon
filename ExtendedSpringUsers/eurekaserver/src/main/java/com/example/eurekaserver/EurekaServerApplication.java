@@ -13,9 +13,6 @@ import org.springframework.context.event.EventListener;
 @EnableEurekaServer
 public class EurekaServerApplication {
 
-//    @Autowired
-//    private EurekaClient eurekaClient;
-
     public static void main(String[] args) {
         SpringApplication.run(EurekaServerApplication.class, args);
     }
@@ -23,10 +20,5 @@ public class EurekaServerApplication {
     @EventListener(ContextClosedEvent.class)
     public void onShutdown() {
         System.out.println("Shutting down Eureka Server gracefully...");
-
-        // Properly unregister the Eureka Client before shutting down
-//        if (eurekaClient != null) {
-//            eurekaClient.shutdown();
-//        }
     }
 }
