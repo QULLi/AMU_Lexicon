@@ -57,3 +57,6 @@ build/
 
 ### Spring Boot - local config
 userapp/src/main/resources/application-local.properties
+
+### Qodo files
+.qodo
