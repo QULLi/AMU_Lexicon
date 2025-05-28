@@ -37,6 +37,13 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <!-- Mockito Core -->
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>5.18.0</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -58,6 +65,30 @@
                 <configuration>
                     <source>21</source>  <!-- Update to match your Java version -->
                     <target>21</target>
+                </configuration>
+            </plugin>
+            <!-- Maven properties -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>properties</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.3</version>
+                <configuration>
+                    <argLine>
+                        -Xshare:off <!-- Disable class sharing -->
+                        -javaagent:${settings.localRepository}\org\mockito\mockito-core\5.18.0\mockito-core-5.18.0.jar <!-- Latest stable version -->
+                        -Xmx2048m <!-- Increase memory allocation -->
+                    </argLine>
                 </configuration>
             </plugin>
         </plugins>
